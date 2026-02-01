@@ -1,0 +1,517 @@
+{
+  "meta": {
+    "captured_at_utc": "2026-01-31T22:45:10.339335+00:00",
+    "hostname": "h1",
+    "source_cmd": "ss -tin"
+  },
+  "sockets": [
+    {
+      "state": "ESTAB",
+      "recv_q": 0,
+      "send_q": 0,
+      "local": {
+        "raw": "127.0.0.1:55226",
+        "ip": "127.0.0.1",
+        "port": 55226
+      },
+      "peer": {
+        "raw": "127.0.0.1:40191",
+        "ip": "127.0.0.1",
+        "port": 40191
+      },
+      "process": "",
+      "header_raw": "ESTAB 0      0                                     127.0.0.1:55226                          127.0.0.1:40191",
+      "metrics": {
+        "raw": "bbr wscale:12,12 rto:208 rtt:7.389/11.008 ato:40 mss:65483 pmtu:65535 rcvmss:65483 advmss:65483 cwnd:51 bytes_sent:2666080 bytes_acked:2666081 bytes_received:5908339 segs_out:37549 segs_in:27420 data_segs_out:15634 data_segs_in:23734 bbr:(bw:58207107640bps,mrtt:0.016,pacing_gain:2.88672,cwnd_gain:2.88672) send 3615788875bps lastsnd:46 lastrcv:35 lastack:35 pacing_rate 356741506632bps delivery_rate 58207111104bps delivered:15635 app_limited busy:63820ms rcv_rtt:10.75 rcv_space:221114 rcv_ssthresh:4278973 minrtt:0.013 snd_wnd:3915776",
+        "groups": {
+          "bbr": {
+            "bw": {
+              "value": 58207107640,
+              "unit": "bps"
+            },
+            "mrtt": 0.016,
+            "pacing_gain": 2.88672,
+            "cwnd_gain": 2.88672
+          }
+        },
+        "cc": "bbr",
+        "wscale": [
+          12,
+          12
+        ],
+        "rto": 208,
+        "rtt": {
+          "a": 7.389,
+          "b": 11.008
+        },
+        "ato": 40,
+        "mss": 65483,
+        "pmtu": 65535,
+        "rcvmss": 65483,
+        "advmss": 65483,
+        "cwnd": 51,
+        "bytes_sent": 2666080,
+        "bytes_acked": 2666081,
+        "bytes_received": 5908339,
+        "segs_out": 37549,
+        "segs_in": 27420,
+        "data_segs_out": 15634,
+        "data_segs_in": 23734,
+        "send": {
+          "value": 3615788875,
+          "unit": "bps"
+        },
+        "lastsnd": 46,
+        "lastrcv": 35,
+        "lastack": 35,
+        "pacing_rate": {
+          "value": 356741506632,
+          "unit": "bps"
+        },
+        "delivery_rate": {
+          "value": 58207111104,
+          "unit": "bps"
+        },
+        "delivered": 15635,
+        "flags": [
+          "app_limited"
+        ],
+        "busy": {
+          "value": 63820,
+          "unit": "ms"
+        },
+        "rcv_rtt": 10.75,
+        "rcv_space": 221114,
+        "rcv_ssthresh": 4278973,
+        "minrtt": 0.013,
+        "snd_wnd": 3915776
+      },
+      "cont_lines_raw": [
+        "bbr wscale:12,12 rto:208 rtt:7.389/11.008 ato:40 mss:65483 pmtu:65535 rcvmss:65483 advmss:65483 cwnd:51 bytes_sent:2666080 bytes_acked:2666081 bytes_received:5908339 segs_out:37549 segs_in:27420 data_segs_out:15634 data_segs_in:23734 bbr:(bw:58207107640bps,mrtt:0.016,pacing_gain:2.88672,cwnd_gain:2.88672) send 3615788875bps lastsnd:46 lastrcv:35 lastack:35 pacing_rate 356741506632bps delivery_rate 58207111104bps delivered:15635 app_limited busy:63820ms rcv_rtt:10.75 rcv_space:221114 rcv_ssthresh:4278973 minrtt:0.013 snd_wnd:3915776"
+      ]
+    },
+    {
+      "state": "ESTAB",
+      "recv_q": 0,
+      "send_q": 0,
+      "local": {
+        "raw": "127.0.0.1:40191",
+        "ip": "127.0.0.1",
+        "port": 40191
+      },
+      "peer": {
+        "raw": "127.0.0.1:55226",
+        "ip": "127.0.0.1",
+        "port": 55226
+      },
+      "process": "",
+      "header_raw": "ESTAB 0      0                                     127.0.0.1:40191                          127.0.0.1:55226",
+      "metrics": {
+        "raw": "bbr wscale:12,12 rto:207 rtt:6.017/10.632 ato:43 mss:65483 pmtu:65535 rcvmss:32842 advmss:65483 cwnd:12 ssthresh:8 bytes_sent:5908339 bytes_acked:5908339 bytes_received:2666080 segs_out:27419 segs_in:37549 data_segs_out:23734 data_segs_in:15634 bbr:(bw:74837709824bps,mrtt:0.007,pacing_gain:1.25,cwnd_gain:2) send 1044767824bps lastsnd:35 lastrcv:46 lastack:35 pacing_rate 92611665904bps delivery_rate 74837714280bps delivered:23735 app_limited busy:234683ms rcv_rtt:22.507 rcv_space:91321 rcv_ssthresh:3912079 minrtt:0.007 snd_wnd:4280320",
+        "groups": {
+          "bbr": {
+            "bw": {
+              "value": 74837709824,
+              "unit": "bps"
+            },
+            "mrtt": 0.007,
+            "pacing_gain": 1.25,
+            "cwnd_gain": 2
+          }
+        },
+        "cc": "bbr",
+        "wscale": [
+          12,
+          12
+        ],
+        "rto": 207,
+        "rtt": {
+          "a": 6.017,
+          "b": 10.632
+        },
+        "ato": 43,
+        "mss": 65483,
+        "pmtu": 65535,
+        "rcvmss": 32842,
+        "advmss": 65483,
+        "cwnd": 12,
+        "ssthresh": 8,
+        "bytes_sent": 5908339,
+        "bytes_acked": 5908339,
+        "bytes_received": 2666080,
+        "segs_out": 27419,
+        "segs_in": 37549,
+        "data_segs_out": 23734,
+        "data_segs_in": 15634,
+        "send": {
+          "value": 1044767824,
+          "unit": "bps"
+        },
+        "lastsnd": 35,
+        "lastrcv": 46,
+        "lastack": 35,
+        "pacing_rate": {
+          "value": 92611665904,
+          "unit": "bps"
+        },
+        "delivery_rate": {
+          "value": 74837714280,
+          "unit": "bps"
+        },
+        "delivered": 23735,
+        "flags": [
+          "app_limited"
+        ],
+        "busy": {
+          "value": 234683,
+          "unit": "ms"
+        },
+        "rcv_rtt": 22.507,
+        "rcv_space": 91321,
+        "rcv_ssthresh": 3912079,
+        "minrtt": 0.007,
+        "snd_wnd": 4280320
+      },
+      "cont_lines_raw": [
+        "bbr wscale:12,12 rto:207 rtt:6.017/10.632 ato:43 mss:65483 pmtu:65535 rcvmss:32842 advmss:65483 cwnd:12 ssthresh:8 bytes_sent:5908339 bytes_acked:5908339 bytes_received:2666080 segs_out:27419 segs_in:37549 data_segs_out:23734 data_segs_in:15634 bbr:(bw:74837709824bps,mrtt:0.007,pacing_gain:1.25,cwnd_gain:2) send 1044767824bps lastsnd:35 lastrcv:46 lastack:35 pacing_rate 92611665904bps delivery_rate 74837714280bps delivered:23735 app_limited busy:234683ms rcv_rtt:22.507 rcv_space:91321 rcv_ssthresh:3912079 minrtt:0.007 snd_wnd:4280320"
+      ]
+    },
+    {
+      "state": "ESTAB",
+      "recv_q": 0,
+      "send_q": 0,
+      "local": {
+        "raw": "[2001:400:a100:3020:f816:3eff:fe39:f1da]:22",
+        "ip": "2001:400:a100:3020:f816:3eff:fe39:f1da",
+        "port": 22
+      },
+      "peer": {
+        "raw": "[2602:fcfb:3:ffff::2]:47400",
+        "ip": "2602:fcfb:3:ffff::2",
+        "port": 47400
+      },
+      "process": "",
+      "header_raw": "ESTAB 0      0      [2001:400:a100:3020:f816:3eff:fe39:f1da]:22                 [2602:fcfb:3:ffff::2]:47400",
+      "metrics": {
+        "raw": "bbr wscale:7,12 rto:215 rtt:14.496/0.038 ato:121 mss:1428 pmtu:9000 rcvmss:1428 advmss:8928 cwnd:26 bytes_sent:24559 bytes_acked:24559 bytes_received:8010 segs_out:176 segs_in:286 data_segs_out:173 data_segs_in:124 bbr:(bw:5447384bps,mrtt:14.374,pacing_gain:2.88672,cwnd_gain:2.88672) send 20490066bps lastsnd:71113 lastrcv:71113 lastack:71098 pacing_rate 22588912bps delivery_rate 5447776bps delivered:174 app_limited busy:2521ms rcv_space:56596 rcv_ssthresh:56596 minrtt:14.373 snd_wnd:80896",
+        "groups": {
+          "bbr": {
+            "bw": {
+              "value": 5447384,
+              "unit": "bps"
+            },
+            "mrtt": 14.374,
+            "pacing_gain": 2.88672,
+            "cwnd_gain": 2.88672
+          }
+        },
+        "cc": "bbr",
+        "wscale": [
+          7,
+          12
+        ],
+        "rto": 215,
+        "rtt": {
+          "a": 14.496,
+          "b": 0.038
+        },
+        "ato": 121,
+        "mss": 1428,
+        "pmtu": 9000,
+        "rcvmss": 1428,
+        "advmss": 8928,
+        "cwnd": 26,
+        "bytes_sent": 24559,
+        "bytes_acked": 24559,
+        "bytes_received": 8010,
+        "segs_out": 176,
+        "segs_in": 286,
+        "data_segs_out": 173,
+        "data_segs_in": 124,
+        "send": {
+          "value": 20490066,
+          "unit": "bps"
+        },
+        "lastsnd": 71113,
+        "lastrcv": 71113,
+        "lastack": 71098,
+        "pacing_rate": {
+          "value": 22588912,
+          "unit": "bps"
+        },
+        "delivery_rate": {
+          "value": 5447776,
+          "unit": "bps"
+        },
+        "delivered": 174,
+        "flags": [
+          "app_limited"
+        ],
+        "busy": {
+          "value": 2521,
+          "unit": "ms"
+        },
+        "rcv_space": 56596,
+        "rcv_ssthresh": 56596,
+        "minrtt": 14.373,
+        "snd_wnd": 80896
+      },
+      "cont_lines_raw": [
+        "bbr wscale:7,12 rto:215 rtt:14.496/0.038 ato:121 mss:1428 pmtu:9000 rcvmss:1428 advmss:8928 cwnd:26 bytes_sent:24559 bytes_acked:24559 bytes_received:8010 segs_out:176 segs_in:286 data_segs_out:173 data_segs_in:124 bbr:(bw:5447384bps,mrtt:14.374,pacing_gain:2.88672,cwnd_gain:2.88672) send 20490066bps lastsnd:71113 lastrcv:71113 lastack:71098 pacing_rate 22588912bps delivery_rate 5447776bps delivered:174 app_limited busy:2521ms rcv_space:56596 rcv_ssthresh:56596 minrtt:14.373 snd_wnd:80896"
+      ]
+    },
+    {
+      "state": "ESTAB",
+      "recv_q": 0,
+      "send_q": 0,
+      "local": {
+        "raw": "[2001:400:a100:3020:f816:3eff:fe39:f1da]:43752",
+        "ip": "2001:400:a100:3020:f816:3eff:fe39:f1da",
+        "port": 43752
+      },
+      "peer": {
+        "raw": "[2a00:1098:2b::1:14c7:27e0]:443",
+        "ip": "2a00:1098:2b::1:14c7:27e0",
+        "port": 443
+      },
+      "process": "",
+      "header_raw": "ESTAB 0      0      [2001:400:a100:3020:f816:3eff:fe39:f1da]:43752        [2a00:1098:2b::1:14c7:27e0]:443",
+      "metrics": {
+        "raw": "bbr wscale:10,9 rto:322 rtt:121.489/16.19 ato:40 mss:1048 pmtu:9000 rcvmss:1048 advmss:8928 cwnd:34 bytes_sent:88453 bytes_acked:88454 bytes_received:25820 segs_out:167 segs_in:160 data_segs_out:99 data_segs_in:88 bbr:(bw:698616bps,mrtt:111.648,pacing_gain:2.88672,cwnd_gain:2.88672) send 2346352bps lastsnd:1217 lastrcv:1225 lastack:1059 pacing_rate 2105072bps delivery_rate 698616bps delivered:100 app_limited busy:2753ms rcv_rtt:189.25 rcv_space:34762 rcv_ssthresh:38782 minrtt:111.648 snd_wnd:174080",
+        "groups": {
+          "bbr": {
+            "bw": {
+              "value": 698616,
+              "unit": "bps"
+            },
+            "mrtt": 111.648,
+            "pacing_gain": 2.88672,
+            "cwnd_gain": 2.88672
+          }
+        },
+        "cc": "bbr",
+        "wscale": [
+          10,
+          9
+        ],
+        "rto": 322,
+        "rtt": {
+          "a": 121.489,
+          "b": 16.19
+        },
+        "ato": 40,
+        "mss": 1048,
+        "pmtu": 9000,
+        "rcvmss": 1048,
+        "advmss": 8928,
+        "cwnd": 34,
+        "bytes_sent": 88453,
+        "bytes_acked": 88454,
+        "bytes_received": 25820,
+        "segs_out": 167,
+        "segs_in": 160,
+        "data_segs_out": 99,
+        "data_segs_in": 88,
+        "send": {
+          "value": 2346352,
+          "unit": "bps"
+        },
+        "lastsnd": 1217,
+        "lastrcv": 1225,
+        "lastack": 1059,
+        "pacing_rate": {
+          "value": 2105072,
+          "unit": "bps"
+        },
+        "delivery_rate": {
+          "value": 698616,
+          "unit": "bps"
+        },
+        "delivered": 100,
+        "flags": [
+          "app_limited"
+        ],
+        "busy": {
+          "value": 2753,
+          "unit": "ms"
+        },
+        "rcv_rtt": 189.25,
+        "rcv_space": 34762,
+        "rcv_ssthresh": 38782,
+        "minrtt": 111.648,
+        "snd_wnd": 174080
+      },
+      "cont_lines_raw": [
+        "bbr wscale:10,9 rto:322 rtt:121.489/16.19 ato:40 mss:1048 pmtu:9000 rcvmss:1048 advmss:8928 cwnd:34 bytes_sent:88453 bytes_acked:88454 bytes_received:25820 segs_out:167 segs_in:160 data_segs_out:99 data_segs_in:88 bbr:(bw:698616bps,mrtt:111.648,pacing_gain:2.88672,cwnd_gain:2.88672) send 2346352bps lastsnd:1217 lastrcv:1225 lastack:1059 pacing_rate 2105072bps delivery_rate 698616bps delivered:100 app_limited busy:2753ms rcv_rtt:189.25 rcv_space:34762 rcv_ssthresh:38782 minrtt:111.648 snd_wnd:174080"
+      ]
+    },
+    {
+      "state": "ESTAB",
+      "recv_q": 0,
+      "send_q": 4436,
+      "local": {
+        "raw": "[2001:400:a100:3020:f816:3eff:fe39:f1da]:45416",
+        "ip": "2001:400:a100:3020:f816:3eff:fe39:f1da",
+        "port": 45416
+      },
+      "peer": {
+        "raw": "[2a01:4f8:c2c:123f:64:5:284a:62c0]:443",
+        "ip": "2a01:4f8:c2c:123f:64:5:284a:62c0",
+        "port": 443
+      },
+      "process": "",
+      "header_raw": "ESTAB 0      4436   [2001:400:a100:3020:f816:3eff:fe39:f1da]:45416 [2a01:4f8:c2c:123f:64:5:284a:62c0]:443",
+      "metrics": {
+        "raw": "bbr wscale:8,9 rto:601 rtt:343.678/0.875 ato:40 mss:1048 pmtu:9000 rcvmss:1048 advmss:8928 cwnd:56 bytes_sent:78299 bytes_acked:73864 bytes_received:5526 segs_out:93 segs_in:51 data_segs_out:81 data_segs_in:12 bbr:(bw:683624bps,mrtt:331.914,pacing_gain:2.88672,cwnd_gain:2.88672) send 1366116bps lastsnd:25 lastrcv:1655 lastack:1655 pacing_rate 1953696bps delivery_rate 683624bps delivered:77 busy:3378ms unacked:5 rcv_rtt:334 rcv_space:34762 rcv_ssthresh:49814 minrtt:331.914 snd_wnd:4195072",
+        "groups": {
+          "bbr": {
+            "bw": {
+              "value": 683624,
+              "unit": "bps"
+            },
+            "mrtt": 331.914,
+            "pacing_gain": 2.88672,
+            "cwnd_gain": 2.88672
+          }
+        },
+        "cc": "bbr",
+        "wscale": [
+          8,
+          9
+        ],
+        "rto": 601,
+        "rtt": {
+          "a": 343.678,
+          "b": 0.875
+        },
+        "ato": 40,
+        "mss": 1048,
+        "pmtu": 9000,
+        "rcvmss": 1048,
+        "advmss": 8928,
+        "cwnd": 56,
+        "bytes_sent": 78299,
+        "bytes_acked": 73864,
+        "bytes_received": 5526,
+        "segs_out": 93,
+        "segs_in": 51,
+        "data_segs_out": 81,
+        "data_segs_in": 12,
+        "send": {
+          "value": 1366116,
+          "unit": "bps"
+        },
+        "lastsnd": 25,
+        "lastrcv": 1655,
+        "lastack": 1655,
+        "pacing_rate": {
+          "value": 1953696,
+          "unit": "bps"
+        },
+        "delivery_rate": {
+          "value": 683624,
+          "unit": "bps"
+        },
+        "delivered": 77,
+        "busy": {
+          "value": 3378,
+          "unit": "ms"
+        },
+        "unacked": 5,
+        "rcv_rtt": 334,
+        "rcv_space": 34762,
+        "rcv_ssthresh": 49814,
+        "minrtt": 331.914,
+        "snd_wnd": 4195072
+      },
+      "cont_lines_raw": [
+        "bbr wscale:8,9 rto:601 rtt:343.678/0.875 ato:40 mss:1048 pmtu:9000 rcvmss:1048 advmss:8928 cwnd:56 bytes_sent:78299 bytes_acked:73864 bytes_received:5526 segs_out:93 segs_in:51 data_segs_out:81 data_segs_in:12 bbr:(bw:683624bps,mrtt:331.914,pacing_gain:2.88672,cwnd_gain:2.88672) send 1366116bps lastsnd:25 lastrcv:1655 lastack:1655 pacing_rate 1953696bps delivery_rate 683624bps delivered:77 busy:3378ms unacked:5 rcv_rtt:334 rcv_space:34762 rcv_ssthresh:49814 minrtt:331.914 snd_wnd:4195072"
+      ]
+    },
+    {
+      "state": "ESTAB",
+      "recv_q": 0,
+      "send_q": 0,
+      "local": {
+        "raw": "[2001:400:a100:3020:f816:3eff:fe39:f1da]:22",
+        "ip": "2001:400:a100:3020:f816:3eff:fe39:f1da",
+        "port": 22
+      },
+      "peer": {
+        "raw": "[2600:2701:5000:a902::c]:46486",
+        "ip": "2600:2701:5000:a902::c",
+        "port": 46486
+      },
+      "process": "",
+      "header_raw": "ESTAB 0      0      [2001:400:a100:3020:f816:3eff:fe39:f1da]:22              [2600:2701:5000:a902::c]:46486",
+      "metrics": {
+        "raw": "bbr wscale:7,12 rto:215 rtt:14.227/7.683 ato:43 mss:1428 pmtu:9000 rcvmss:1428 advmss:8928 cwnd:563 bytes_sent:6795811 bytes_acked:6795811 bytes_received:3373253 segs_out:30300 segs_in:34754 data_segs_out:26426 data_segs_in:15844 bbr:(bw:164284360bps,mrtt:9.952,pacing_gain:2.88672,cwnd_gain:2.88672) send 452077880bps lastsnd:43 lastrcv:54 lastack:32 pacing_rate 469500312bps delivery_rate 164284432bps delivered:26427 app_limited busy:402768ms rcv_rtt:30.953 rcv_space:86568 rcv_ssthresh:649749 minrtt:9.908 snd_wnd:1674240",
+        "groups": {
+          "bbr": {
+            "bw": {
+              "value": 164284360,
+              "unit": "bps"
+            },
+            "mrtt": 9.952,
+            "pacing_gain": 2.88672,
+            "cwnd_gain": 2.88672
+          }
+        },
+        "cc": "bbr",
+        "wscale": [
+          7,
+          12
+        ],
+        "rto": 215,
+        "rtt": {
+          "a": 14.227,
+          "b": 7.683
+        },
+        "ato": 43,
+        "mss": 1428,
+        "pmtu": 9000,
+        "rcvmss": 1428,
+        "advmss": 8928,
+        "cwnd": 563,
+        "bytes_sent": 6795811,
+        "bytes_acked": 6795811,
+        "bytes_received": 3373253,
+        "segs_out": 30300,
+        "segs_in": 34754,
+        "data_segs_out": 26426,
+        "data_segs_in": 15844,
+        "send": {
+          "value": 452077880,
+          "unit": "bps"
+        },
+        "lastsnd": 43,
+        "lastrcv": 54,
+        "lastack": 32,
+        "pacing_rate": {
+          "value": 469500312,
+          "unit": "bps"
+        },
+        "delivery_rate": {
+          "value": 164284432,
+          "unit": "bps"
+        },
+        "delivered": 26427,
+        "flags": [
+          "app_limited"
+        ],
+        "busy": {
+          "value": 402768,
+          "unit": "ms"
+        },
+        "rcv_rtt": 30.953,
+        "rcv_space": 86568,
+        "rcv_ssthresh": 649749,
+        "minrtt": 9.908,
+        "snd_wnd": 1674240
+      },
+      "cont_lines_raw": [
+        "bbr wscale:7,12 rto:215 rtt:14.227/7.683 ato:43 mss:1428 pmtu:9000 rcvmss:1428 advmss:8928 cwnd:563 bytes_sent:6795811 bytes_acked:6795811 bytes_received:3373253 segs_out:30300 segs_in:34754 data_segs_out:26426 data_segs_in:15844 bbr:(bw:164284360bps,mrtt:9.952,pacing_gain:2.88672,cwnd_gain:2.88672) send 452077880bps lastsnd:43 lastrcv:54 lastack:32 pacing_rate 469500312bps delivery_rate 164284432bps delivered:26427 app_limited busy:402768ms rcv_rtt:30.953 rcv_space:86568 rcv_ssthresh:649749 minrtt:9.908 snd_wnd:1674240"
+      ]
+    }
+  ]
+}
