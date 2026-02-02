@@ -19,7 +19,7 @@ HOST_PREFIX = "hs"          # "hs" or "hr"
 IPERF_PORT  = 5201          # set to None to disable port filtering
 REFRESH_S   = 0.1
 
-MN_M_CMD    = "mininet/util/m"   # path to Mininet "m" helper
+MN_M_CMD    = "/home/ubuntu/mininet/util/m"   # path to Mininet "m" helper
 USE_SUDO    = False              # set True if `m` requires sudo
 # ---------------------------------------------------------------
 
@@ -227,6 +227,7 @@ def monitor():
             sudo = "sudo " if USE_SUDO else ""
             cmd = f"{sudo}{MN_M_CMD} {host} ss -tin"
             ss_text = run_cmd(cmd)
+            #sprint(cmd)
 
             flows = parse_ss_tin_output(ss_text, port_filter=IPERF_PORT)
 
