@@ -1,40 +1,39 @@
 #!/usr/bin/env python3
-"""
-Terminal monitor (JupyterHub Terminal on FABRIC):
-Shows a refreshed table (only output) summarizing `ss -tin` for each Mininet host.
-
-It runs commands like:
-  mininet/util/m hs1 ss -tin
-
-Stop with Ctrl+C
-"""
-
 import re
 import time
 import subprocess
+from pathlib import Path
 
-# -------------------- CONFIG (hardcode here) --------------------
+# -------------------- CONFIG --------------------
 NUM_HOSTS   = 16
-HOST_PREFIX = "hs"          # "hs" or "hr"
-IPERF_PORT  = 5201          # set to None to disable port filtering
+HOST_PREFIX = "hs"     # "hs" or "hr"
+IPERF_PORT  = 5201     # set None to disable port filter
 REFRESH_S   = 0.1
-
-MN_M_CMD    = "/home/ubuntu/mininet/util/m"   # path to Mininet "m" helper
-USE_SUDO    = False              # set True if `m` requires sudo
-# ---------------------------------------------------------------
+# -----------------------------------------------
 
 
-# -------------------- Command runner --------------------
-def run_cmd(cmd: str) -> str:
-    """Run a shell command and return stdout (no extra prints)."""
-    try:
-        p = subprocess.run(cmd, shell=True, capture_output=True, text=True)
-        return p.stdout or ""
-    except Exception:
-        return ""
+# -------------------- LOCAL EXEC (quiet) --------------------
+def exec_quiet(cmd_list):
+    """
+    Run a local command quietly and return stdout as text.
+    """
+    p = subprocess.run(
+        cmd_list,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        text=True,
+        check=False,
+    )
+    return p.stdout or ""
 
 
-# -------------------- Parsing helpers --------------------
+def _to_text(x):
+    if isinstance(x, (tuple, list)):
+        return "\n".join(str(p) for p in x if p is not None)
+    return str(x)
+
+
+# -------------------- PARSING HELPERS --------------------
 def _find_int(text, key):
     m = re.search(rf"\b{key}:(\d+)\b", text)
     return int(m.group(1)) if m else None
@@ -44,14 +43,12 @@ def _find_float(text, key):
     return float(m.group(1)) if m else None
 
 def _find_rtt(text):
-    # rtt:22.876/10.763
     m = re.search(r"\brtt:(\d+(?:\.\d+)?)/(\d+(?:\.\d+)?)\b", text)
     if not m:
         return None, None
     return float(m.group(1)), float(m.group(2))
 
 def _find_rate_bps(text, key):
-    # send 8988984bps, pacing_rate 22604480bps, delivery_rate 794488bps
     m = re.search(rf"\b{key}\s+(\d+)([KMG]?)bps\b", text)
     if not m:
         return None
@@ -61,7 +58,6 @@ def _find_rate_bps(text, key):
     return val * scale
 
 def _find_bbr_bw_bps(text):
-    # bbr:(bw:793952bps,mrtt:14.379,...)
     m = re.search(r"bbr:\(.*?\bbw:(\d+)([KMG]?)bps", text)
     if not m:
         return None
@@ -82,10 +78,8 @@ def _keep_port(src, dst, port):
 
 def parse_ss_tin_output(ss_text, port_filter=None):
     """
-    Parse `ss -tin` output into a list of per-flow dicts.
-    Each flow appears as:
-      line i   : ESTAB ...
-      line i+1 : tcp info (bbr/cubic ... rtt:.. cwnd:.. send ... pacing_rate ... delivery_rate ...)
+    Returns a list of flow dicts for ESTAB sockets.
+    Each socket is usually two lines: ESTAB header + tcp info.
     """
     lines = [ln.strip() for ln in ss_text.splitlines() if ln.strip()]
     flows = []
@@ -133,7 +127,7 @@ def parse_ss_tin_output(ss_text, port_filter=None):
     return flows
 
 
-# -------------------- Summaries + formatting --------------------
+# -------------------- SUMMARIZATION --------------------
 def mean(vals):
     vals = [v for v in vals if v is not None]
     return (sum(vals) / len(vals)) if vals else None
@@ -141,10 +135,6 @@ def mean(vals):
 def sum_or_none(vals):
     vals = [v for v in vals if v is not None]
     return sum(vals) if vals else None
-
-def dominant_cc(ccs):
-    ccs = [c for c in ccs if c]
-    return max(set(ccs), key=ccs.count) if ccs else "-"
 
 def bps_to_mbps(x):
     return None if x is None else (x / 1e6)
@@ -158,12 +148,17 @@ def fmt_int(x, w=6):
 def fmt_bps(x, w=12):
     return f"{'-':>{w}}" if x is None else f"{x:>{w}.3e}"
 
+def dominant_cc(ccs):
+    ccs = [c for c in ccs if c]
+    if not ccs:
+        return "-"
+    return max(set(ccs), key=ccs.count)
 
 def summarize_host(flows, ack_rate_bps):
-    send_bps    = sum_or_none([f["send_bps"] for f in flows])
-    pacing_bps  = mean([f["pacing_bps"] for f in flows])
-    delivery_bps= mean([f["delivery_bps"] for f in flows])
-    bbr_bw_bps  = mean([f["bbr_bw_bps"] for f in flows])
+    send_bps = sum_or_none([f["send_bps"] for f in flows])
+    pacing_bps = mean([f["pacing_bps"] for f in flows])
+    delivery_bps = mean([f["delivery_bps"] for f in flows])
+    bbr_bw_bps = mean([f["bbr_bw_bps"] for f in flows])
 
     return {
         "flows": len(flows),
@@ -173,23 +168,26 @@ def summarize_host(flows, ack_rate_bps):
         "avg_cwnd": mean([f["cwnd"] for f in flows]),
         "mss": mean([f["mss"] for f in flows]),
         "rto": mean([f["rto"] for f in flows]),
-
-        # Outgoing (from ss)
         "send_mbps": bps_to_mbps(send_bps),
         "send_bps": send_bps,
         "pacing_mbps": bps_to_mbps(pacing_bps),
+        "pacing_bps": pacing_bps,
         "delivery_mbps": bps_to_mbps(delivery_bps),
+        "delivery_bps": delivery_bps,
         "bbr_bw_mbps": bps_to_mbps(bbr_bw_bps),
-
-        # Incoming-ish (ACK progress): Δbytes_acked/Δt * 8
+        "bbr_bw_bps": bbr_bw_bps,
         "ack_mbps": bps_to_mbps(ack_rate_bps),
         "ack_bps": ack_rate_bps,
     }
 
 
-# -------------------- Terminal table (only output) --------------------
-def clear_screen():
-    print("\033[2J\033[H", end="")  # ANSI clear + home
+# -------------------- TABLE OUTPUT --------------------
+def clear_only_table():
+    try:
+        from IPython.display import clear_output
+        clear_output(wait=True)
+    except Exception:
+        print("\033[2J\033[H", end="")
 
 def print_table(rows):
     header = (
@@ -201,6 +199,7 @@ def print_table(rows):
     )
     print(header)
     print("-" * len(header))
+
     for r in rows:
         print(
             f"{r['host']:<5} {r['flows']:>3} {r['cc']:<5} "
@@ -212,48 +211,73 @@ def print_table(rows):
         )
 
 
-# -------------------- Main loop --------------------
-def monitor():
+# -------------------- MININET NAMESPACE ACCESS --------------------
+def pid_file_for(host):
+    # Common locations across distros
+    candidates = [
+        Path("/var/run/mininet") / f"{host}.pid",
+        Path("/run/mininet") / f"{host}.pid",
+    ]
+    for p in candidates:
+        if p.exists():
+            return p
+    return candidates[0]
+
+def ss_in_host_namespace(host):
+    """
+    Run: sudo mnexec -a <pid> ss -tin
+    """
+    pid_path = pid_file_for(host)
+    try:
+        pid = pid_path.read_text().strip()
+    except FileNotFoundError:
+        return ""
+
+    if not pid:
+        return ""
+
+    cmd = ["sudo", "mnexec", "-a", pid, "ss", "-tin"]
+    return exec_quiet(cmd)
+
+
+# -------------------- MAIN MONITOR LOOP --------------------
+def monitor_ss_table():
     prev_acked = {}  # host -> last total bytes_acked
-    prev_time  = {}  # host -> timestamp
+    prev_time = {}   # host -> timestamp
 
-    while True:
-        rows = []
-        now = time.time()
+    try:
+        while True:
+            rows = []
+            now = time.time()
 
-        for i in range(1, NUM_HOSTS + 1):
-            host = f"{HOST_PREFIX}{i}"
+            for i in range(1, NUM_HOSTS + 1):
+                host = f"{HOST_PREFIX}{i}"
 
-            sudo = "sudo " if USE_SUDO else ""
-            cmd = f"{sudo}{MN_M_CMD} {host} ss -tin"
-            ss_text = run_cmd(cmd)
-            #sprint(cmd)
+                text = _to_text(ss_in_host_namespace(host))
+                flows = parse_ss_tin_output(text, port_filter=IPERF_PORT)
 
-            flows = parse_ss_tin_output(ss_text, port_filter=IPERF_PORT)
+                total_bytes_acked = sum_or_none([f["bytes_acked"] for f in flows]) or 0
+                last_bytes = prev_acked.get(host, total_bytes_acked)
+                last_t = prev_time.get(host, now)
 
-            # ACK progress rate (bits/s)
-            total_bytes_acked = sum_or_none([f["bytes_acked"] for f in flows]) or 0
-            last_bytes = prev_acked.get(host, total_bytes_acked)
-            last_t = prev_time.get(host, now)
+                dt = max(1e-6, now - last_t)
+                delta_bytes = max(0, total_bytes_acked - last_bytes)
+                ack_rate_bps = (delta_bytes * 8.0) / dt
 
-            dt = max(1e-6, now - last_t)
-            delta_bytes = max(0, total_bytes_acked - last_bytes)
-            ack_rate_bps = (delta_bytes * 8.0) / dt
+                prev_acked[host] = total_bytes_acked
+                prev_time[host] = now
 
-            prev_acked[host] = total_bytes_acked
-            prev_time[host] = now
+                summary = summarize_host(flows, ack_rate_bps)
+                summary["host"] = host
+                rows.append(summary)
 
-            s = summarize_host(flows, ack_rate_bps)
-            s["host"] = host
-            rows.append(s)
+            clear_only_table()
+            print_table(rows)
+            time.sleep(REFRESH_S)
 
-        clear_screen()
-        print_table(rows)
-        time.sleep(REFRESH_S)
+    except KeyboardInterrupt:
+        print("\nStopped.")
 
 
 if __name__ == "__main__":
-    try:
-        monitor()
-    except KeyboardInterrupt:
-        pass
+    monitor_ss_table()
