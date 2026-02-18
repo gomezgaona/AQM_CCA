@@ -28,17 +28,20 @@ def cdf(values):
 def main():
     prague = []
     bbr3 = []
-
+    cubic = []
     for i in range(1, 129):
         prague.append(get_end_time(f"20BDP/prague/hs{i}_out.json"))
         bbr3.append(get_end_time(f"20BDP/bbr/hs{i}_out.json"))
+        cubic.append(get_end_time(f"20BDP/cubic/hs{i}_out.json"))
 
     x_p, y_p = cdf(prague)
     x_b, y_b = cdf(bbr3)
+    x_c, y_c = cdf(cubic)
 
     plt.figure()
     plt.step(x_p, y_p, where="post", label="Prague")
     plt.step(x_b, y_b, where="post", label="BBR3")
+    plt.step(x_c, y_c, where="post", label="Cubic")
     plt.xlabel("FCT (seconds)")
     plt.ylabel("CDF")
     plt.grid(True)
