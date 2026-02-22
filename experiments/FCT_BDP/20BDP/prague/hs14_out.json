@@ -1,0 +1,179 @@
+{
+	"start":	{
+		"connected":	[{
+				"socket":	8,
+				"local_host":	"172.16.0.14",
+				"local_port":	59952,
+				"remote_host":	"172.17.0.14",
+				"remote_port":	5201
+			}],
+		"version":	"iperf 3.16",
+		"system_info":	"Linux h1 6.12.54-0b264c55b-l4steam-117 #1 SMP PREEMPT_DYNAMIC Fri Nov  7 18:07:57 UTC 2025 x86_64",
+		"timestamp":	{
+			"time":	"Sun, 22 Feb 2026 01:34:19 GMT",
+			"timesecs":	1771724059
+		},
+		"connecting_to":	{
+			"host":	"172.17.0.14",
+			"port":	5201
+		},
+		"cookie":	"v44pczrjdd4qbs6bdq672sffqge3qa37ectv",
+		"tcp_mss_default":	1448,
+		"target_bitrate":	0,
+		"fq_rate":	0,
+		"sock_bufsize":	0,
+		"sndbuf_actual":	1000000,
+		"rcvbuf_actual":	1000000,
+		"test_start":	{
+			"protocol":	"TCP",
+			"num_streams":	1,
+			"blksize":	131072,
+			"omit":	0,
+			"duration":	0,
+			"bytes":	107374182,
+			"blocks":	0,
+			"reverse":	0,
+			"tos":	0,
+			"target_bitrate":	0,
+			"bidir":	0,
+			"fqrate":	0
+		}
+	},
+	"intervals":	[{
+			"streams":	[{
+					"socket":	8,
+					"start":	0,
+					"end":	1.001065,
+					"seconds":	1.0010650157928467,
+					"bytes":	71565312,
+					"bits_per_second":	571913399.197714,
+					"retransmits":	1412,
+					"snd_cwnd":	144010840,
+					"snd_wnd":	76636160,
+					"rtt":	307174,
+					"rttvar":	11210,
+					"pmtu":	1500,
+					"omitted":	false,
+					"sender":	true
+				}],
+			"sum":	{
+				"start":	0,
+				"end":	1.001065,
+				"seconds":	1.0010650157928467,
+				"bytes":	71565312,
+				"bits_per_second":	571913399.197714,
+				"retransmits":	1412,
+				"omitted":	false,
+				"sender":	true
+			}
+		}, {
+			"streams":	[{
+					"socket":	8,
+					"start":	1.001065,
+					"end":	2.001074,
+					"seconds":	1.0000089406967163,
+					"bytes":	27525120,
+					"bits_per_second":	220198991.26760185,
+					"retransmits":	405,
+					"snd_cwnd":	143344760,
+					"snd_wnd":	106004480,
+					"rtt":	556226,
+					"rttvar":	59,
+					"pmtu":	1500,
+					"omitted":	false,
+					"sender":	true
+				}],
+			"sum":	{
+				"start":	1.001065,
+				"end":	2.001074,
+				"seconds":	1.0000089406967163,
+				"bytes":	27525120,
+				"bits_per_second":	220198991.26760185,
+				"retransmits":	405,
+				"omitted":	false,
+				"sender":	true
+			}
+		}, {
+			"streams":	[{
+					"socket":	8,
+					"start":	2.001074,
+					"end":	3.001113,
+					"seconds":	1.0000389814376831,
+					"bytes":	8388608,
+					"bits_per_second":	67106248.101971462,
+					"retransmits":	0,
+					"snd_cwnd":	142460032,
+					"snd_wnd":	137011200,
+					"rtt":	579206,
+					"rttvar":	138,
+					"pmtu":	1500,
+					"omitted":	false,
+					"sender":	true
+				}],
+			"sum":	{
+				"start":	2.001074,
+				"end":	3.001113,
+				"seconds":	1.0000389814376831,
+				"bytes":	8388608,
+				"bits_per_second":	67106248.101971462,
+				"retransmits":	0,
+				"omitted":	false,
+				"sender":	true
+			}
+		}],
+	"end":	{
+		"streams":	[{
+				"sender":	{
+					"socket":	8,
+					"start":	0,
+					"end":	3.001507,
+					"seconds":	3.001507,
+					"bytes":	107479040,
+					"bits_per_second":	286466871.47489578,
+					"retransmits":	1817,
+					"max_snd_cwnd":	144010840,
+					"max_snd_wnd":	137011200,
+					"max_rtt":	579206,
+					"min_rtt":	307174,
+					"mean_rtt":	505453,
+					"sender":	true
+				},
+				"receiver":	{
+					"socket":	8,
+					"start":	0,
+					"end":	3.550362,
+					"seconds":	3.001507,
+					"bytes":	107347968,
+					"bits_per_second":	241886248.21919569,
+					"sender":	true
+				}
+			}],
+		"sum_sent":	{
+			"start":	0,
+			"end":	3.001507,
+			"seconds":	3.001507,
+			"bytes":	107479040,
+			"bits_per_second":	286466871.47489578,
+			"retransmits":	1817,
+			"sender":	true
+		},
+		"sum_received":	{
+			"start":	0,
+			"end":	3.550362,
+			"seconds":	3.550362,
+			"bytes":	107347968,
+			"bits_per_second":	241886248.21919569,
+			"sender":	true
+		},
+		"cpu_utilization_percent":	{
+			"host_total":	23.747493294688262,
+			"host_user":	12.920741200345395,
+			"host_system":	10.826752094342867,
+			"remote_total":	2.47494982924339,
+			"remote_user":	0,
+			"remote_system":	2.4749779952821882
+		},
+		"sender_tcp_congestion":	"prague",
+		"receiver_tcp_congestion":	"prague"
+	}
+}

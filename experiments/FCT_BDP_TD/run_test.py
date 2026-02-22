@@ -8,7 +8,7 @@ import time
 from pathlib import Path
 
 DEFAULT_M = "/home/ubuntu/mininet/util/m"
-OUT_ROOT = "/home/ubuntu/AQM_CCA/experiments/FCT_BDP"
+OUT_ROOT = "/home/ubuntu/AQM_CCA/experiments/FCT_BDP_TD"
 IP_PREFIX = "172.17.0"
 
 

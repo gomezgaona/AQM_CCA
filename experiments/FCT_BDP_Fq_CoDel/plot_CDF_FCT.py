@@ -108,9 +108,9 @@ def main():
         ax.step(x_b, y_b, where="post", label=lbl_b, color="#82AA45")
         ax.step(x_p, y_p, where="post", label=lbl_p, color="#95253B")
 
-        ax.set_xlim(220, 3100)
+        ax.set_xlim(0, 60)
 
-        ax.set_xlabel("FCT (seconds)")
+        ax.set_xlabel("FCT [seconds]")
         ax.set_ylabel("CDF")
         ax.grid(True)
 
@@ -129,7 +129,7 @@ def main():
         # Re-layout after resizing; reserve top space for legend
         fig.tight_layout(rect=[0, 0, 1, 0.86])
 
-        fig.savefig(f"cdf_fct_{bdp}BDP.pdf", bbox_inches="tight", pad_inches=0.12)
+        fig.savefig(f"cdf_fct_{bdp}BDP_Fq_CoDel.pdf", bbox_inches="tight", pad_inches=0.12)
         plt.close(fig)
 
 
