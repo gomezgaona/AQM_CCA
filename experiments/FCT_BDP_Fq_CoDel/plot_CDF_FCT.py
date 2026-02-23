@@ -108,7 +108,7 @@ def main():
         ax.step(x_b, y_b, where="post", label=lbl_b, color="#82AA45")
         ax.step(x_p, y_p, where="post", label=lbl_p, color="#95253B")
 
-        ax.set_xlim(0, 60)
+        ax.set_xlim(0, 300)
 
         ax.set_xlabel("FCT [seconds]")
         ax.set_ylabel("CDF")
